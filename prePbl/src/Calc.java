@@ -66,4 +66,12 @@ public class Calc {
         return sum;
     }
 
+    public double sum(double taxRate, int ... goodsIds){
+        int sum = 0;
+        for(int GoodsId:goodsIds){
+            sum += idPriceMap.get(GoodsId) * idNumMap.get(GoodsId);
+        }
+        return Math.floor(sum * taxRate); //呼び出し元で(int)とキャストしている（つまり切り捨てが行われている）のでMath.floorは不要だが勉強のため。
+    }
+
 }
