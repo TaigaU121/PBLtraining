@@ -15,16 +15,16 @@ public class Calc {
         idNumMap = new HashMap<>();
 
         // 商品idと単価は固定なので、初期化時点で紐付け
-        idPriceMap.put(1,100);
-        idPriceMap.put(2,40);
-        idPriceMap.put(3,150);
-        idPriceMap.put(4,350);
-        idPriceMap.put(5,400);
-        idPriceMap.put(6,420);
-        idPriceMap.put(7,440);
-        idPriceMap.put(8,100);
-        idPriceMap.put(9,80);
-        idPriceMap.put(10,100);
+        idPriceMap.put(1,100);  //りんご
+        idPriceMap.put(2,40);   //みかん
+        idPriceMap.put(3,150);  //ぶどう
+        idPriceMap.put(4,350);  //のり弁
+        idPriceMap.put(5,400);  //しゃけ弁
+        idPriceMap.put(6,420);  //タバコ
+        idPriceMap.put(7,440);  //メンソールタバコ
+        idPriceMap.put(8,100);  //ライター
+        idPriceMap.put(9,80);   //お茶
+        idPriceMap.put(10,100); //コーヒー
 
         // 商品は後のsum関数の引数にidがあった場合に個数1となるよう初期化
         idNumMap.put(1,1);
@@ -68,10 +68,20 @@ public class Calc {
 
     public double sum(double taxRate, int ... goodsIds){
         int sum = 0;
-        for(int GoodsId:goodsIds){
-            sum += idPriceMap.get(GoodsId) * idNumMap.get(GoodsId);
+        int sumExcludeTabaco = 0;
+        int sumTabaco = 0;
+        for(int goodsId:goodsIds) {
+            //goodsIdがタバコのidのとき、処理を変える。
+            if (goodsId == 6) {
+                //タバコの合計を計算
+                sumTabaco = idPriceMap.get(goodsId) * idNumMap.get(goodsId);
+            } else {
+                //タバコ以外の合計を計算
+                sumExcludeTabaco += idPriceMap.get(goodsId) * idNumMap.get(goodsId);
+            }
         }
-        return Math.floor(sum * taxRate); //呼び出し元で(int)とキャストしている（つまり切り捨てが行われている）のでMath.floorは不要だが勉強のため。
+        //タバコ以外の合計に税率をかけてタバコの合計を加えたものを返す
+        return Math.floor(sumExcludeTabaco * taxRate + sumTabaco); //呼び出し元で(int)とキャストしている（つまり切り捨てが行われている）のでMath.floorは不要だが勉強のため。
     }
 
 }
