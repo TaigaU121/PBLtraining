@@ -8,9 +8,10 @@ public class Register {
         Calc calc = new Calc();
 
         calc.setNum(1,2);
-        calc.setNum(2,5);
+        calc.setNum(3,3);
+        calc.setNum(6,1);
 
-        System.out.println((int)calc.sum(1.08,1,2));
+        System.out.println((int)calc.sum(1.08,1,3,6));
 
     }
 }
