@@ -80,8 +80,12 @@ public class Calc {
                 sumExcludeTabaco += idPriceMap.get(goodsId) * idNumMap.get(goodsId);
             }
         }
+        // りんご3個買うと20円割り引くので、その割引額を格納する変数を初期化。
+        int appleDiscount = 0;
+        // ここでは、3個買うとごとに20円ずつ引いていくという理解。
+        appleDiscount = 20 * (idNumMap.get(1)/3);
         //タバコ以外の合計に税率をかけてタバコの合計を加えたものを返す
-        return Math.floor(sumExcludeTabaco * taxRate + sumTabaco); //呼び出し元で(int)とキャストしている（つまり切り捨てが行われている）のでMath.floorは不要だが勉強のため。
+        return Math.floor(sumExcludeTabaco * taxRate + sumTabaco - appleDiscount); //呼び出し元で(int)とキャストしている（つまり切り捨てが行われている）のでMath.floorは不要だが勉強のため。
     }
 
 }
