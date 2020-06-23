@@ -10,7 +10,7 @@ public class Register {
         calc.setNum(1,2);
         calc.setNum(2,5);
 
-        System.out.println(calc.sum(1,2));
+        System.out.println((int)calc.sum(1.08,1,2));
 
     }
 }
