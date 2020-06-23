@@ -7,7 +7,7 @@ public class Register {
         //Calcクラス（計算する）を生成
         Calc calc = new Calc();
 
-        calc.setNum(1,2);
+        calc.setNum(1,7);
         calc.setNum(3,3);
         calc.setNum(6,1);
 
